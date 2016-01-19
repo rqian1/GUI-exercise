@@ -1,0 +1,119 @@
+import java.util.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.*;
+
+public class Pullup extends JPanel implements MouseListener {
+	int repainted=0;
+	public Pullup() {
+		setBackground(Color.white);
+		addMouseListener(this);
+	}
+	public void paintComponent(Graphics graphics) {
+		super.paintComponent(graphics);
+		graphics.setColor(Color.black);
+
+		graphics.drawLine(0,220, 600, 220);//(x1,x2,x3,x4)
+		
+		if (repainted==0){
+			graphics.drawOval(280,230,60,60); //(x,y,r,r)
+			//body
+			graphics.drawLine(310,290, 310, 400);//(x1,x2,x3,x4)
+			//arms
+			graphics.drawLine(310,320, 350, 220);//(x1,y,x2,y4)
+			graphics.drawLine(310,320, 270, 220);//(x1,y,x2,y4)
+			//legs
+			graphics.drawLine(310,400,  300, 480);
+			graphics.drawLine(310,400, 320, 480);
+
+		
+		}else if (repainted==1){
+			graphics.drawOval(280,220,60,60); 
+			graphics.drawLine(310,280, 310, 390);
+			graphics.drawLine(310,310, 335, 280);//(x1,y,x2,y4)
+			graphics.drawLine(335,280, 350, 220);//(x1,y,x2,y4)
+			//left
+			graphics.drawLine(310,310, 285, 280);//(x1,y,x2,y4)
+			graphics.drawLine(285,280, 270, 220);
+			graphics.drawLine(310,390,  300, 470);
+			graphics.drawLine(310,390, 320, 470);
+		
+		}else if (repainted==2){
+			graphics.drawOval(280,210,60,60); //(x,y,r,r)
+			//body
+			graphics.drawLine(310,270, 310, 380);
+			graphics.drawLine(310,290, 335, 280);//(x1,y,x2,y4)
+			graphics.drawLine(335,280, 350, 220);//(x1,y,x2,y4)
+			//left
+			graphics.drawLine(310,290, 285, 280);//(x1,y,x2,y4)
+			graphics.drawLine(285,280, 270, 220);//(x1,y,x2,y4)
+			//legs
+			graphics.drawLine(310,380,  300, 460);
+			graphics.drawLine(310,380, 320, 460);
+			
+		}else if (repainted==3){
+			graphics.drawOval(280,190,60,60); 
+			graphics.drawLine(310,250, 310, 360);
+			graphics.drawLine(310,275, 335, 280);//(x1,y,x2,y4)
+			graphics.drawLine(335,280, 350, 220);//(x1,y,x2,y4)
+			//left
+			graphics.drawLine(310,275, 285, 280);//(x1,y,x2,y4)
+			graphics.drawLine(285,280, 270, 220);//(x1,y,x2,y4)
+			//legs
+			graphics.drawLine(310,360,  300, 440);
+			graphics.drawLine(310,360, 320, 440);
+		}else if (repainted==4){
+			graphics.drawOval(280,210,60,60); 
+			graphics.drawLine(310,270, 310, 380);
+			graphics.drawLine(310,290, 335, 280);//(x1,y,x2,y4)
+			graphics.drawLine(335,280, 350, 220);
+			graphics.drawLine(310,290, 285, 280);//(x1,y,x2,y4)
+			graphics.drawLine(285,280, 270, 220);
+			graphics.drawLine(310,380,  300, 460);
+			graphics.drawLine(310,380, 320, 460);
+		}else if (repainted==5){
+			graphics.drawOval(280,220,60,60); 
+			graphics.drawLine(310,280, 310, 390);
+			graphics.drawLine(310,310, 335, 280);
+			graphics.drawLine(335,280, 350, 220);//(x1,y,x2,y4)
+			//left
+			graphics.drawLine(310,310, 285, 280);//(x1,y,x2,y4)
+			graphics.drawLine(285,280, 270, 220);
+			graphics.drawLine(310,390,  300, 470);
+			graphics.drawLine(310,390, 320, 470);
+			repainted=-1;
+		}
+		repainted++;
+	}
+	public void mouseClicked(MouseEvent event) {
+	}
+	public void mouseEntered(MouseEvent event) {}
+	public void mouseExited(MouseEvent event) {}
+	public void mouseReleased(MouseEvent event) {}
+	public void actionPerformed(ActionEvent e) {}
+
+	public void mousePressed(MouseEvent event) {
+			repaint();
+	}
+	public static void main(String[] args){
+		javax.swing.SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				runthis();
+			}
+		});
+	}
+	static void runthis(){
+		Pullup panel = new Pullup();                            // window for drawing
+		JFrame application = new JFrame("Pull Up");                            // the program itself
+		application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // set frame to exit	          
+		application.add(panel);           
+		application.setSize(600, 600);         // window is 500 pixels wide, 400 high
+		application.setVisible(true);   
+	}
+}
