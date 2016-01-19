@@ -1,0 +1,89 @@
+import java.awt.Color;
+
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+public class Starter extends JPanel implements ActionListener{
+	private static JLabel hello;
+	private static JPanel panel;
+
+	private static	JFrame frame;
+	private static JComboBox convert;
+	public Starter() {
+		setBackground(Color.white);
+		frame=new JFrame("Start");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		panel=new JPanel();	
+		hello=new JLabel("Hello! Pick an exercise you would like to do");
+		panel.add(hello);
+	
+		String[] convertsStrings={"","Knee Lifts", "Jumping Jacks", "Pull Ups","Hip Raises"};
+		convert=new JComboBox(convertsStrings);
+		convert.setAlignmentX(JComboBox.LEFT_ALIGNMENT);
+		convert.setSelectedIndex(0);
+		convert.addActionListener(this);
+		panel.add(convert);
+		
+		frame.setContentPane(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(400, 300);
+		frame.setVisible(true);
+
+	}
+	public void paintComponent(Graphics graphics) {
+		super.paintComponent(graphics);
+		graphics.setColor(Color.black);
+		graphics.drawOval(280,230,60,60); //(x,y,r,r)
+		graphics.drawLine(310,290, 310, 400);//(x1,x2,x3,x4)
+		graphics.drawLine(310,320, 320, 400);//(x1,x2,x3,x4)
+		graphics.drawLine(310,320, 300, 400);//(x1,x2,x3,x4)
+		graphics.drawLine(310,400,  300, 480);
+		graphics.drawLine(310,400, 315, 440);
+		graphics.drawLine(315,440, 320, 480);
+	}
+	
+	public static void main(String[] args){
+		javax.swing.SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				runthis();
+			}
+		});
+	}
+	private static void runthis(){
+		//JFrame.setDefaultLookAndFeelDecorated(true);
+		Starter start=new Starter();
+	}
+	public void actionPerformed(ActionEvent e) {
+	
+			JComboBox comboBox=(JComboBox)e.getSource();
+			String exercise=(String)comboBox.getSelectedItem();
+			String event=e.getActionCommand();
+			if (exercise.equals("Knee Lifts")){
+				KneeLifts lift=new KneeLifts();
+				lift.runthis();
+			}else if(exercise.equals("Jumping Jacks")){
+				JumpingJacks jacks=new JumpingJacks();
+				jacks.runthis();
+			}else if(exercise.equals("Hip Raises")){
+				HipRaise raise=new HipRaise();
+				raise.runthis();
+			}else if(exercise.equals("Pull Ups")){
+				Pullup pull=new Pullup();
+				pull.runthis();
+			}
+		
+	}
+
+}
