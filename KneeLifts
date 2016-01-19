@@ -1,0 +1,98 @@
+import java.util.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.*;
+
+public class KneeLifts extends JPanel implements MouseListener {
+	int repainted=0;
+	public KneeLifts() {
+		setBackground(Color.white);
+		addMouseListener(this);
+	}
+	public void paintComponent(Graphics graphics) {
+		super.paintComponent(graphics);
+		graphics.setColor(Color.black);
+		graphics.drawOval(280,230,60,60); //(x,y,r,r)
+		graphics.drawLine(310,290, 310, 400);//(x1,x2,x3,x4)
+		graphics.drawLine(310,320, 320, 400);//(x1,x2,x3,x4)
+		graphics.drawLine(310,320, 300, 400);//(x1,x2,x3,x4)
+		if (repainted==0){
+			graphics.drawLine(310,400,  300, 480);
+			graphics.drawLine(310,400, 315, 440);
+			graphics.drawLine(315,440, 320, 480);
+		
+		}else if (repainted==1){
+			graphics.drawLine(310,400, 300, 480);
+			graphics.drawLine(310,400, 315, 410);
+			graphics.drawLine(315,410, 320, 460);
+		
+		}else if (repainted==2){
+			graphics.drawLine(310,400, 300, 480);
+			graphics.drawLine(310,400, 315, 400);
+			graphics.drawLine(315,400, 320, 440);
+		}else if (repainted==3){
+			graphics.drawLine(310,400, 300, 480);
+			graphics.drawLine(310,400, 315, 410);
+			graphics.drawLine(315,410, 320, 460);
+	
+		}else if (repainted==4){
+			graphics.drawLine(310,400,  300, 480);
+			graphics.drawLine(310,400, 315, 440);
+			graphics.drawLine(315,440, 320, 480);
+	
+			//other leg here
+		}else if (repainted==5){
+			graphics.drawLine(310,400,  305, 410);
+			graphics.drawLine(305,410,  300, 460);
+			graphics.drawLine(310,400, 320, 480);
+
+		}else if (repainted==6){
+			graphics.drawLine(310,400,  305, 400);
+			graphics.drawLine(305,400,  300, 440);
+			graphics.drawLine(310,400, 320, 480);
+
+		}else if (repainted==7){
+			graphics.drawLine(310,400,  305, 410);
+			graphics.drawLine(305,410,  300, 460);
+			graphics.drawLine(310,400, 320, 480);
+
+		}else if (repainted==8){
+			graphics.drawLine(310,400,  305, 440);
+			graphics.drawLine(305,440,  300, 480);
+			graphics.drawLine(310,400, 320, 480);
+			repainted=-1;
+		}
+		repainted++;
+	}
+	public void mouseClicked(MouseEvent event) {
+	}
+	public void mouseEntered(MouseEvent event) {}
+	public void mouseExited(MouseEvent event) {}
+	public void mouseReleased(MouseEvent event) {}
+	public void actionPerformed(ActionEvent e) {}
+
+	public void mousePressed(MouseEvent event) {
+			repaint();
+	}
+	public static void main(String[] args){
+		javax.swing.SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				runthis();
+			}
+		});
+	}
+	static void runthis(){
+		KneeLifts panel = new KneeLifts();                            // window for drawing
+		JFrame application = new JFrame("KneeLifts");                            // the program itself
+		application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // set frame to exit	          
+		application.add(panel);           
+		application.setSize(600, 600);         // window is 500 pixels wide, 400 high
+		application.setVisible(true);   
+	}
+}
